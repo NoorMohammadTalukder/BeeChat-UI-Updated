@@ -305,11 +305,12 @@ export default {
       }
     },
     register() {
-      fetch("https://localhost:44313/api/create/user", {
+      fetch("http://localhost:5074/api/create/user", {
         method: "POST",
+       
         headers: {
-          "Content-Type": "application/json",
-        },
+         "Content-Type": "application/json",
+      },
         body: JSON.stringify({
           FirstName: this.FirstName,
           LastName: this.LastName,
@@ -334,17 +335,19 @@ export default {
 
     login() {
     //this.clicked=true;
-    fetch("https://localhost:44313/api/login/user", {
+    fetch(`http://localhost:5074/api/login/user/${this.Email}/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        Email: this.Email,
+       
+       Email: this.Email,
       }),
     })
       .then((response) => {
         if (response.ok) {
+          console.log(this.Email)
           this.loggedPersonMail = this.Email;
 
           this.$store.dispatch("user/addLoggedUser", {

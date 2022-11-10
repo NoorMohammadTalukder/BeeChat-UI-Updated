@@ -67,7 +67,7 @@
             </div> -->
          
         </div>
-
+        
         <div class="send-text-body child mb-1  pt-1 ps-1">
             <form @submit.prevent="sendMsg" action="">
               <div class="d-flex g-0">
@@ -131,7 +131,7 @@ export default {
 
       //console.log("vvv"+ this.chatterName)
 
-      fetch("https://localhost:44313/api/create/messsage/user", {
+      fetch("http://localhost:5074/api/create/messsage/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -157,7 +157,7 @@ export default {
         });
     },
     async loadUsers() {
-      await fetch("https://localhost:44313/api/all/user", {
+      await fetch("http://localhost:5074/api/all/user", {
         method: "GET",
       })
         .then((response) => {
@@ -172,10 +172,10 @@ export default {
           for (const id in data) {
             //if(0!==data[id].Id){
             results.push({
-              Id: data[id].Id,
-              FirstName: data[id].FirstName,
-              LastName: data[id].LastName,
-              Email: data[id].Email,
+              Id: data[id].id,
+              FirstName: data[id].firstName,
+              LastName: data[id].lastName,
+              Email: data[id].email,
             });
           }
           //console.log(results)
@@ -196,7 +196,7 @@ export default {
     },
     async GetLoggedUser() {
       await fetch(
-        `https://localhost:44313/api/login/user/${this.loggedMail}/`,
+        `http://localhost:5074/api/get/login/user/${this.loggedMail}/`,
         {
           method: "GET",
         }
@@ -209,9 +209,9 @@ export default {
         })
         .then((data) => {
           this.$store.dispatch("user/addUserDetail", {
-            Id: data.Id,
-            FirstName: data.FirstName,
-            LastName: data.LastName,
+            Id: data.id,
+            FirstName: data.firstName,
+            LastName: data.lastName,
           });
         })
         .catch((error) => {
@@ -224,7 +224,7 @@ export default {
       this.Id1 = this.$store.getters["user/loggedUserId"];
       this.Id2 = this.$store.getters["user/getId2"];
       fetch(
-        `https://localhost:44313/api/all/coversation/${this.Id1}/${this.Id2}`,
+        `http://localhost:5074/api/all/coversation/${this.Id1}/${this.Id2}`,
         {
           method: "GET",
         }
@@ -239,10 +239,10 @@ export default {
           const results = [];
           for (const id in data) {
             results.push({
-              Id: data[id].Id,
-              Text: data[id].Text,
-              UserId: data[id].UserId,
-              UserId2: data[id].UserId2,
+              Id: data[id].id,
+              Text: data[id].text,
+              UserId: data[id].userId,
+              UserId2: data[id].userId2,
             });
           }
           this.results2 = results;

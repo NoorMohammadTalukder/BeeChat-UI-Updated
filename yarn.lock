@@ -19,6 +19,11 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@aspnet/signalr@^1.0.27":
+  "integrity" "sha512-utZvBF9snjdwIBpvcFa6htqFTVaTN50QIZUoiznKpYSZImew1a1Ci7VYmK8HODqwRqUtj0o5/xR1nzt8xex5sA=="
+  "resolved" "https://registry.npmjs.org/@aspnet/signalr/-/signalr-1.0.27.tgz"
+  "version" "1.0.27"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.18.6":
   "integrity" "sha512-TDCmlK5eOvH+eH7cdAFlNXeVJqWIQ7gW9tY1GJIpUtFb6CmjVyq2VM3u71bOyR8CRihcCgMUYoDNyLXao3+70Q=="
   "resolved" "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.18.6.tgz"

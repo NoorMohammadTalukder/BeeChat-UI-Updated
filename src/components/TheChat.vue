@@ -1,23 +1,34 @@
 <template>
+  <!-- Button trigger modal -->
+
+
+
   <div v-if="otherMsg!=true" class="d-flex justify-content-start " >
     <img
       src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8N3x8fGVufDB8fHx8&w=1000&q=80"
       alt=""
     />
 
-    <p class="text-other active2 w-50 mt-3 ms-1"  >
+   <div class="text-other active2 w-50 mt-3 ms-1">
+    <p   >
       {{Text}}
     </p>
+    <span class="delete-chat" v-on:click="deleteChat(Id)">Delete Chat</span>
+   </div>
+    
   </div>
 
   <div v-if="otherMsg==true" class="d-flex justify-content-end " >
    
 
-    <p class="text-me active1  w-50 mt-3 me-1"  >
+   <div class="text-me active1  w-50 mt-3 me-1" >
+    <p  >
       {{Text}}
     </p>
-    <img
-      src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8N3x8fGVufDB8fHx8&w=1000&q=80"
+    <span class="delete-chat" v-on:click="deleteChat(Id)">Delete Chat</span>
+   </div>
+   <img
+      src="https://img.freepik.com/premium-vector/initial-me-letter-logo-design-vector-template-abstract-letter-me-logo-design_616200-1122.jpg?w=2000"
       alt=""
     />
   </div>
@@ -52,8 +63,9 @@ export default {
   
       deleteChat(id) {
         //  console.log(id)
+      //  alert(id)
   
-        fetch(`https://localhost:44313/api/delete/chat/${id}`, {
+        fetch(`http://localhost:5074/api/delete/chat/${id}`, {
           method: "GET",
         }).then((response) => {
           if (response.ok) {
@@ -66,7 +78,7 @@ export default {
       },
     },
     created(){
-        console.log("props"+this.Id)
+       // console.log("props"+this.Id)
     },
     mounted() {
       this.setOtherMsg();
@@ -77,6 +89,21 @@ export default {
 
 
 <style scoped>
+.delete-chat{
+  display: none;
+  cursor: pointer;
+  color: #c93434;
+  transition: 0.1s ease-in;
+}
+.delete-chat:hover{
+  color: rgb(142, 9, 9);
+}
+.text-other:hover  .delete-chat{
+  display: block;
+}
+.text-me:hover  .delete-chat{
+  display: block;
+}
 .active1 {
  background: #9ADCFF;
 }
@@ -116,6 +143,7 @@ img {
   border-end-end-radius: 20px;
   text-align: left;
   border: 1px solid rgba(80, 78, 78, 0.718);
+  
 }
 
 .text-me {

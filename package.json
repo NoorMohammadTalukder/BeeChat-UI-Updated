@@ -14,6 +14,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
+    "@aspnet/signalr": "^1.0.27",
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
