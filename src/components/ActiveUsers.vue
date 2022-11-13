@@ -2,7 +2,7 @@
   <div class="all-user-list mt-1">
     <div class="user p-2">
       <div class="d-flex align-items-center justify-content-between m-3">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center active-user-detail">
           <div class="icon">
             <i class="fa-solid fa-user"></i>
           </div>
@@ -82,4 +82,32 @@ export default {
   /* border-radius: 10px; */
   /* margin: 2px; */
 }
+
+@media only screen and (max-width:688px) {
+  .name h5{
+    font-size: 6px;
+    margin-top:5px;
+  
+   
+  }
+  .user{
+    padding: 0 !important;
+ 
+   
+  }
+  .user i {
+ margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 50%;
+  font-size: 4px;
+}
+}
+
+@media only screen and (min-width:688px) and (max-width:992px) {
+  .name h5{
+    font-size: 15px;
+  }
+
+}
+
 </style>

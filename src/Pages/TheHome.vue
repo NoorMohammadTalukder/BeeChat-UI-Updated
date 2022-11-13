@@ -34,7 +34,7 @@
             alt=""
           />
         </div>
-        <div class="col-lg-6 col-12">
+        <div class="col-lg-6 col-12 reg-sign">
           <div class="row">
             <div v-if="registerStatus == true">
               <h1>JOIN BEE CHAT</h1>
@@ -136,7 +136,7 @@
 
     <section class="container mt-5" id="aboutus">
       <div class="row align-items-center">
-        <div class="col-lg-6">
+        <div class="col-lg-6 ">
           <img
             class="img-fluid"
             src="https://img.freepik.com/free-vector/online-world-concept-illustration_114360-1007.jpg?size=626&ext=jpg&ga=GA1.2.1975301952.1667483955&semt=sph"
@@ -160,7 +160,7 @@
 
     <section class="container" id="faq">
       <div class="row align-items-center">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingOne">
@@ -346,8 +346,10 @@ export default {
       }),
     })
       .then((response) => {
-        if (response.ok) {
-          console.log(this.Email)
+       // console.log(response.status)
+        if (response.status===200) {
+         // console.log("responses are:"+ response)
+         // console.log(this.Email)
           this.loggedPersonMail = this.Email;
 
           this.$store.dispatch("user/addLoggedUser", {
@@ -388,7 +390,7 @@ h3{
   height: 400px;
   width: 400px;
   border-radius: 50%;
-  margin-left: 50px;
+  padding-left: 50px;
 }
 
 .list img {
@@ -436,5 +438,30 @@ button:hover {
 }
 .signin-instead:hover {
   color: #e1121d;
+}
+
+@media only screen and (max-width:688px) {
+  .home-pt2 img {
+    width: 300px;
+    height: 300px;
+  }
+  .faq img{
+    width: 500px !important;
+    height: 200px;
+    margin-left: 100px;
+    padding: 0;
+    background: red;
+  }
+}
+
+@media only screen and (min-width:688px) and (max-width:992px) {
+  .home-pt2 img {
+  
+    margin-left: 100px;
+}
+.reg-sign{
+  margin-right: 10px !important;
+ 
+}
 }
 </style>

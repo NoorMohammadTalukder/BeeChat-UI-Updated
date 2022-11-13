@@ -64,4 +64,49 @@ export default {
   margin-top: 8px;
   border-radius: 50%;
 }
+
+@media only screen and (max-width:688px) {
+  .navigation{
+    height: 20%;
+  width: 0%;
+  padding-top: 200px;
+  padding-left: 0px !important;
+  }
+ 
+.navigation i {
+  font-size: 10px;
+}
+.navigation .icon{
+  height: 10px;
+  width: 10px;
+}
+.navigation img {
+  width: 20px;
+  height: 20px;
+
+}
+}
+
+@media only screen and (min-width:688px) and (max-width:992px) {
+  .navigation{
+    height: 20%;
+  width: 0%;
+  padding-top: 200px;
+  padding-left: 12px !important;
+  }
+ 
+.navigation i {
+  font-size: 15px;
+}
+.navigation .icon{
+  height: 30px;
+  width: 30px;
+}
+.navigation img {
+  width: 30px;
+  height: 30px;
+
+}
+}
+
 </style>

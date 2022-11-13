@@ -43,7 +43,7 @@
       <div class="row g-0 pt-3 conversation-body parent">
         <div  v-if="chatterName" class="col-12">
           <the-chat
-            v-for="x in results2"
+            v-for="x in allMsg"
             :key="x.Id"
             :Id="x.Id"
             :Text="x.Text"
@@ -68,8 +68,8 @@
          
         </div>
         
-        <div class="send-text-body child mb-1  pt-1 ps-1">
-            <form @submit.prevent="sendMsg" action="">
+        <div class="send-text-body child mb-1  pt-1 ps-1 ">
+            <form @submit.prevent="sendMsg2" action="">
               <div class="d-flex g-0">
                 <div class="send-text">
                   <input v-model="Text" type="text" placeholder="Enter Your Message" />
@@ -92,6 +92,8 @@
 import TheNavigation from "../components/TheNavigation.vue";
 import ActiveUsers from "../components/ActiveUsers.vue";
 import TheChat from "../components/TheChat.vue";
+const signalR = require('@aspnet/signalr');
+
 export default {
   components: {
     TheNavigation,
@@ -101,7 +103,7 @@ export default {
   data() {
     return {
       results: [],
-      results2: [],
+      allMsg: [],
       // x: [],
       // xx:'',
       loggedMail: "",
@@ -110,21 +112,31 @@ export default {
       Id2: "",
       chatterName: "",
       loggedUserFirstName:"",
+      connection:""
     };
   },
 
-  created() {
-    this.loggedMail = this.$store.getters["user/loggedEmail"];
-   
-    this.GetLoggedUser();
-  },
+  
   methods: {
     logout(){
       this.$router.replace('/');
       
       this.$store.reset();
     },
-    sendMsg() {
+    sendMsg(){
+     // ---------
+          //  Call hub methods from client
+          // ---------
+          this.connection
+            .invoke("SendMessage", this.text, this.Id1,this.Id2)
+            .catch(function(err) {
+              return console.error(err.toSting());
+            });
+
+          // this.userName = "";
+          // this.userMessage = "";
+    },
+    sendMsg2() {
       // alert()
       this.Id1 = this.$store.getters["user/loggedUserId"];
       this.Id2 = this.$store.getters["user/getId2"];
@@ -221,10 +233,15 @@ export default {
     },
 
     allMessages() {
+     // alert()
       this.Id1 = this.$store.getters["user/loggedUserId"];
       this.Id2 = this.$store.getters["user/getId2"];
+      console.log("id1->"+this.Id1)
+      console.log("id2->"+this.Id2)
       fetch(
-        `http://localhost:5074/api/all/coversation/${this.Id1}/${this.Id2}`,
+         `http://localhost:5074/api/all/coversation/${this.Id1}/${this.Id2}`,
+        //  `http://localhost:5074/api/all/coversation`,
+        //`http://localhost:5074/api/all/coversation`,
         {
           method: "GET",
         }
@@ -236,6 +253,11 @@ export default {
           }
         })
         .then((data) => {
+          console.log("all data")
+          console.log(data)
+          console.log(this.Id1)
+          console.log(this.Id2)
+          console.log(data)
           const results = [];
           for (const id in data) {
             results.push({
@@ -245,7 +267,7 @@ export default {
               UserId2: data[id].userId2,
             });
           }
-          this.results2 = results;
+          this.allMsg = results;
           //   console.log(this.results)
         })
         .catch((error) => {
@@ -256,13 +278,62 @@ export default {
 
     convo(value) {
       this.chatterName = value;
+      this.allMessages();
     },
+    HubCnct() {
+
+      // ---------
+      // Connect to our hub
+      // ---------
+      this.connection = new signalR.HubConnectionBuilder()
+        .withUrl("http://localhost:5074/notify")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+        var thisVue = this;
+      this.connection.start().catch(function(err) {
+        return console.error(err.toSting());
+      });
+      this.connection.on("BroadcastMessage", function() {
+        console.log("Broacast hit");
+       
+        
+        function x(){
+          thisVue.allMessages();
+     
+       }
+        x()
+
+      
+      
+        console.log("Broacast hitted again");
+      
+       //thisVue.messages.push({ user, message });
+      });
+      
+      
+    },
+   
   },
+ 
+  created() {
+    this.loggedMail = this.$store.getters["user/loggedEmail"];
+  
+    this.GetLoggedUser();
+    
+  },
+ 
   mounted() {
+    this.HubCnct()
     this.loadUsers();
-    setInterval(this.allMessages, 2000);
+    //this.cnctHub();
+    this.allMessages()
+    //setInterval(this.allMessages, 2000);
     this.loggedUserFirstName = this.$store.getters["user/loggedName"];
   },
+  beforeUnmount(){
+    //this.HubCnct()
+  }
+
 };
 </script>
 <style scoped>
@@ -321,9 +392,6 @@ export default {
 .send-text input:focus {
   border: 1px solid rgba(0, 21, 255, 0.69);
 }
-.parent{
-
-}
 
 .child {
     position: fixed;
@@ -341,5 +409,43 @@ export default {
   box-sizing: 5px;
   border-radius: 5px;
   width: 100%;
+}
+
+/* media query */
+@media only screen and (max-width:688px)  {
+  .send-text  {
+  width: 200px;
+  }
+  
+  .send-text input{
+    height: 80%;
+  }
+  .send-btn {
+ 
+  padding: 8px 12px;
+  font-size: 15px;
+  box-sizing: 5px;
+  border-radius: 5px;
+  width: 100%;
+}
+  h4{
+    font-size: 8px;
+  }
+  
+
+
+}
+
+@media only screen and (min-width:688px) and (max-width:992px) {
+  .send-text  {
+  width: 400px;
+  
+  }
+  h4{
+    font-size: 15px;
+  }
+  
+
+
 }
 </style>
