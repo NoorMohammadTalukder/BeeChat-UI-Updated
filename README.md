@@ -1,13 +1,17 @@
 # bee-chat
 
 <h2>Backend</h2>
-The backend was build using ASP.NET. <br> Link: https://github.com/NoorMohammadTalukder/Bee-Chat-Backend
+The backend was build using ASP.NET CORE. <br> Link: https://github.com/NoorMohammadTalukder/BEE-CHAT-BACKEND-DOT-NET-CORE
 
 <h2>Video Simulation</h2>
-https://youtu.be/1brwVOLdMkw
+<video src='[your URL here](https://www.youtube.com/watch?v=1brwVOLdMkw)' width=180/>
 
-<h2>Screen Shots</h2>![p0](https://user-images.githubusercontent.com/63577979/201538196-0dde9c2a-506b-4fae-9fad-c007e7fb931f.JPG)
-![p1](https://user-images.githubusercontent.com/63577979/201538199-0f154303-6bd8-405b-b957-5c1a52af6063.JPG)
+<h2>Screen Shots</h2>
+
+![p0](https://user-images.githubusercontent.com/63577979/201538329-8f55beba-f5d0-40a9-979e-69f764db5a61.JPG)
+
+
+![p1](https://user-images.githubusercontent.com/63577979/201538332-c86e2138-0320-4c06-a2bd-06196969f8da.JPG)
 
 ![p3](https://user-images.githubusercontent.com/63577979/201538206-122299cf-6eda-4838-a51a-d63d492f8c52.JPG)
 ![p4](https://user-images.githubusercontent.com/63577979/201538231-fe3e3694-cc04-4924-8a58-cdafa12d3be0.JPG)
@@ -38,6 +42,7 @@ https://youtu.be/1brwVOLdMkw
   <li>HTML</li>
   <li>CSS</li>
   <li>JavaScript</li>
+    <li>SignalR</li>
 </ul>
 
 <h3>Project Setup</h3>
