@@ -4,7 +4,7 @@
 The backend was build using ASP.NET CORE. <br> Link: https://github.com/NoorMohammadTalukder/BEE-CHAT-BACKEND-DOT-NET-CORE
 
 <h2>Video Simulation</h2>
-<video src='[your URL here](https://www.youtube.com/watch?v=1brwVOLdMkw)' width=180/>
+
 
 <h2>Screen Shots</h2>
 
