@@ -1,5 +1,5 @@
-# bee-chat
-
+# Bee-Chat
+This is the frontend of BEECHAT using VUE JS. User can login and can chat with others users. User can also can register with his first name, last name and mail.
 <h1>Backend</h1>
 The backend was build using ASP.NET CORE. <br> Link: https://github.com/NoorMohammadTalukder/BEE-CHAT-BACKEND-DOT-NET-CORE
 
