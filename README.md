@@ -1,8 +1,9 @@
 # bee-chat
 
-<h2>Backend</h2>
+<h1>Backend</h1>
 The backend was build using ASP.NET CORE. <br> Link: https://github.com/NoorMohammadTalukder/BEE-CHAT-BACKEND-DOT-NET-CORE
 
+<h1>Frontend</h1>
 <h2>Video Simulation</h2>
 
 
